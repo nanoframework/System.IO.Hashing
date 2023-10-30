@@ -4,7 +4,7 @@
 
 -----
 
-### Welcome to the .NET **nanoFramework** System.IO.Hashing Library repository
+# Welcome to the .NET **nanoFramework** System.IO.Hashing Library repository
 
 This repository contains the nanoFramework System.IO.Hashing class library.
 
