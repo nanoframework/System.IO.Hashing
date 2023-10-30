@@ -16,6 +16,61 @@ This repository contains the nanoFramework System.IO.Hashing class library.
 
 ## System.IO.Hashing usage
 
+### CRC32 example
+
+This implementation emits the answer in the Little Endian byte order so that the CRC residue relationship (CRC(message concat CRC(message)) is a fixed value). For CRC-32, this stable output is the byte sequence { 0x1C, 0xDF, 0x44, 0x21 }, the Little Endian representation of 0x2144DF1C.
+
+> [!WARNING] There are multiple, incompatible, definitions of a 32-bit cyclic redundancy check (CRC) algorithm. When interoperating with another system, ensure that you are using the same definition. The definition used by this implementation is not compatible with the cyclic redundancy check described in ITU-T I.363.5.
+
+#### Computing a CRC32 for a byte array
+
+```csharp
+
+var testData = new byte[] { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x26, 0x39, 0xF4, 0xCB };
+
+Crc32 crc32 = new Crc32();
+crc32.Append(testData);
+
+ConsoleWriteline($"CRC32 for test data is: {crc32.GetCurrentHashAsUInt32()}");
+```
+
+An alternative (static) API could be used instead.
+
+```csharp
+
+var testData = new byte[] { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x26, 0x39, 0xF4, 0xCB };
+
+var computedHash = Crc32.HashToUInt32(testData)
+
+ConsoleWriteline($"CRC32 for test data is: {computedHash}");
+```
+
+#### Computing a CRC32 for several data chunks
+
+```csharp
+
+var testData1 = new byte[] { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x26, 0x39, 0xF4, 0xCB };
+var testData2 = new byte[] { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0xD9, 0xC6, 0x0B, 0x34 },
+
+Crc32 crc32 = new Crc32();
+crc32.Append(testData1);
+crc32.Append(testData2);
+
+ConsoleWriteline($"CRC32 for test data is: {crc32.GetCurrentHashAsUInt32()}");
+```
+
+In case the `Crc32` object needs to be reused, it's a matter of resetting the hash calculator with a call to `Reset()`.
+
+#### Computing a CRC32 for strings
+
+This can easily be accomplished by extrating the byte representation of a string. Note that this requires adding a reference to `nanoFramework.System.Text`.
+
+```csharp
+var computedHash = Crc32.HashToUInt32(Encoding.UTF8.GetBytes("The quick brown fox jumps over the lazy dog"))
+
+ConsoleWriteline($"CRC32 for the string is: {computedHash}");
+```
+
 ## Feedback and documentation
 
 For documentation, providing feedback, issues and finding out how to contribute please refer to the [Home repo](https://github.com/nanoframework/Home).
