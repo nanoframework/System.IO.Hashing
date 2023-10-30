@@ -23,11 +23,11 @@ This package requires a target with nanoFramework.System.IO.Hashing v$nativeVers
     </dependencies>
   </metadata>
   <files>
-    <file src="nanoFramework.System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.dll" target="lib\nanoFramework.System.IO.Hashing.dll" />
-    <file src="nanoFramework.System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pdb" target="lib\nanoFramework.System.IO.Hashing.pdb" />
-    <file src="nanoFramework.System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pdbx" target="lib\nanoFramework.System.IO.Hashing.pdbx" />
-    <file src="nanoFramework.System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pe" target="lib\nanoFramework.System.IO.Hashing.pe" />
-    <file src="nanoFramework.System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.xml" target="lib\nanoFramework.System.IO.Hashing.xml" />
+    <file src="System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.dll" target="lib\nanoFramework.System.IO.Hashing.dll" />
+    <file src="System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pdb" target="lib\nanoFramework.System.IO.Hashing.pdb" />
+    <file src="System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pdbx" target="lib\nanoFramework.System.IO.Hashing.pdbx" />
+    <file src="System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.pe" target="lib\nanoFramework.System.IO.Hashing.pe" />
+    <file src="System.IO.Hashing\bin\Release\nanoFramework.System.IO.Hashing.xml" target="lib\nanoFramework.System.IO.Hashing.xml" />
     <!-- readme -->
     <file src="assets\readme.txt" target="" />
     <file src="README.md" target="docs\" />
