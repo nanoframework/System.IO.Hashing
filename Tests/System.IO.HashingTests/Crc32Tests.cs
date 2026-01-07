@@ -5,6 +5,7 @@
 //
 
 using nanoFramework.TestFramework;
+using System;
 using System.Collections;
 using System.IO.Hashing;
 using System.Text;
@@ -45,8 +46,9 @@ namespace Crc32Tests
             OutputHelper.WriteLine($"Test: {testName}");
 
             var crc32 = new Crc32();
+            var data = (byte[])_testData[dataIndex];
 
-            crc32.Append((byte[])_testData[dataIndex]);
+            crc32.Append(new Span<byte>(data));
             Assert.AreEqual(hash, crc32.GetCurrentHashAsUInt32());
         }
 
@@ -66,8 +68,9 @@ namespace Crc32Tests
             uint hash)
         {
             OutputHelper.WriteLine($"Test: {testName}");
+            var data = (byte[])_testData[dataIndex];
 
-            var computedHash = Crc32.HashToUInt32((byte[])_testData[dataIndex]);
+            var computedHash = Crc32.HashToUInt32(new Span<byte>(data));
             Assert.AreEqual(hash, computedHash);
         }
     }

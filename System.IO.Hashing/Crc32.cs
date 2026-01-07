@@ -46,42 +46,30 @@ namespace System.IO.Hashing
         /// Appends the contents of <paramref name="source"/> to the data already processed for the current hash computation.
         /// </summary>
         /// <param name="source">The data to process.</param>
-        public void Append(SpanByte source)
-        {
-            _crc = ComputeHash(
-                _crc,
-                source);
-        }
+        public void Append(Span<byte> source) => _crc = ComputeHash(
+            _crc,
+            source);
 
         /// <summary>
         /// Appends the contents of <paramref name="source"/> to the data already processed for the current hash computation.
         /// </summary>
         /// <param name="source">The data to process.</param>
-        public void Append(byte[] source)
-        {
-            _crc = ComputeHash(
-                _crc,
-                new SpanByte(source));
-        }
+        public void Append(byte[] source) => _crc = ComputeHash(
+            _crc,
+            new Span<byte>(source));
 
         /// <summary>
         ///   Appends <paramref name="value"/> to the data already processed for the current hash computation.
         /// </summary>
         /// <param name="value">The <see langword="byte"/> to process.</param>
-        public void Append(byte value)
-        {
-            _crc = ComputeHash(
-                _crc,
-                new byte[] { value });
-        }
+        public void Append(byte value) => _crc = ComputeHash(
+            _crc,
+            new Span<byte>([value]));
 
         /// <summary>
         ///   Resets the hash computation to the initial state.
         /// </summary>
-        public void Reset()
-        {
-            _crc = InitialState;
-        }
+        public void Reset() => _crc = InitialState;
 
         /// <summary>Gets the current computed hash value without modifying accumulated state.</summary>
         /// <returns>The hash value for the data already provided.</returns>
@@ -90,11 +78,11 @@ namespace System.IO.Hashing
         /// <summary>Computes the CRC-32 hash of the provided data.</summary>
         /// <param name="source">The data to hash.</param>
         /// <returns>The computed CRC-32 hash.</returns>
-        public static uint HashToUInt32(SpanByte source) => ComputeHash(InitialState, source) ^ InitialState;
+        public static uint HashToUInt32(Span<byte> source) => ComputeHash(InitialState, source) ^ InitialState;
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         extern private static uint ComputeHash(
             uint crc,
-            SpanByte source);
+            Span<byte> source);
     }
 }
